@@ -8,7 +8,7 @@ labels:
 
 This page describes the recommended instructions for installing the latest stable version of `rippled` on **Red Hat Enterprise Linux**, using a binary that has been compiled and published by Ripple as an `rpm` package.
 
-Currently, **Red Hat Enterprise Linux (RHEL) 9.6 is supported on x86_64 processors**. You may also be able to adapt these instructions to similar Linux distributions including CentOS or Rocky Linux, but other configurations are not officially supported.
+Currently, **Red Hat Enterprise Linux (RHEL) 9 is supported on x86_64 processors**. You may also be able to adapt these instructions to similar Linux distributions including CentOS or Rocky Linux, but other configurations are not officially supported.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ Before you install `rippled`, you must meet the [System Requirements](system-req
 
     - `stable` for the latest production release (`master` branch)
     - `unstable` for pre-release builds (`release` branch)
-    - `nightly` for experimental/development builds (`develop` branch)
+    - `develop` for experimental/development builds (`develop` branch)
 
     {% tabs %}
 
@@ -53,13 +53,13 @@ Before you install `rippled`, you must meet the [System Requirements](system-req
 
     ```{% label="Development" %}
     cat << REPOFILE | sudo tee /etc/yum.repos.d/ripple.repo
-    [ripple-nightly]
+    [ripple-develop]
     name=XRP Ledger Packages
     enabled=1
     gpgcheck=0
     repo_gpgcheck=1
-    baseurl=https://repos.ripple.com/repos/rippled-rpm/nightly/
-    gpgkey=https://repos.ripple.com/repos/rippled-rpm/nightly/repodata/repomd.xml.key
+    baseurl=https://repos.ripple.com/repos/rippled-rpm/develop/
+    gpgkey=https://repos.ripple.com/repos/rippled-rpm/develop/repodata/repomd.xml.key
     REPOFILE
     ```
 

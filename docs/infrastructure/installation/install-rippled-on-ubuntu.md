@@ -43,38 +43,40 @@ Before you install `rippled`, you must meet the [System Requirements](system-req
 4. Check the fingerprint of the newly-added key:
 
     ```
-    gpg --show-keys /etc/apt/keyrings/ripple.gpg
+    gpg --show-keys --fingerprint /etc/apt/keyrings/ripple.gpg
     ```
 
     The output should include an entry for Ripple such as the following:
 
     ```
     pub   ed25519 2026-02-16 [SC] [expires: 2033-02-14]
-        E057C1CF72B0DF1A4559E8577DEE9236AB06FAA6
-    uid   TechOps Team at Ripple <techops+rippled@ripple.com>
+        E057 C1CF 72B0 DF1A 4559  E857 7DEE 9236 AB06 FAA6
+    uid                      TechOps Team at Ripple <techops+rippled@ripple.com>
     sub   ed25519 2026-02-16 [S] [expires: 2029-02-15]
     ```
 
-    In particular, make sure that the fingerprint matches. (In the above example, the fingerprint is on the second line, starting with `C001`.)
+    Ensure the fingerprint `E057 C1CF 72B0 DF1A 4559  E857 7DEE 9236 AB06 FAA6` matches your output.
 
 5. Add the appropriate Ripple repository for your operating system version:
 
     ```
-    echo "deb [signed-by=/etc/apt/keyrings/ripple.gpg] https://repos.ripple.com/repos/rippled-deb noble stable" | \
+    echo "deb [signed-by=/etc/apt/keyrings/ripple.gpg] https://repos.ripple.com/repos/rippled-deb $(. /etc/os-release && echo $VERSION_CODENAME) stable" | \
         sudo tee -a /etc/apt/sources.list.d/ripple.list
     ```
 
-    The above example is appropriate for **Ubuntu 24.04 Noble Numbat**. For other operating systems, replace the word `noble` with one of the following:
+    The following operations systems are supported:
 
-    - `bullseye` for **Debian 11 Bullseye**
     - `bookworm` for **Debian 12 Bookworm**
+    - `trixie` for **Debian 13 Trixie**
     - `jammy` for **Ubuntu 22.04 Jammy Jellyfish**
-    - `noble` for **Ubuntu 24.04 Noble Numbat**
+    - `noble` for **Ubuntu 22.04 Noble Numbat**
 
     If you want access to development or pre-release versions of `rippled`, use one of the following instead of `stable`:
 
     - `unstable` - Pre-release builds ([`release` branch](https://github.com/XRPLF/rippled/tree/release))
-    - `nightly` - Experimental/development builds ([`develop` branch](https://github.com/XRPLF/rippled/tree/develop))
+    - `develop` - Experimental/development builds ([`develop` branch](https://github.com/XRPLF/rippled/tree/develop))
+
+    {% admonition type="info" name="Note" %}`develop` was previously referred to as the deprecated `nightly`.{% /admonition %}
 
     {% admonition type="danger" name="Warning" %}Unstable and nightly builds may be broken at any time. Do not use these builds for production servers.{% /admonition %}
 
@@ -108,11 +110,11 @@ Before you install `rippled`, you must meet the [System Requirements](system-req
 
     By default Ubuntu is not configured to produce core files useful for debugging crashes.
     First run:
-    
+
     ```
     ulimit -c unlimited
     ```
-    
+
     Now run `sudo systemctl edit rippled`. The default editor should open and add
 
     ```
