@@ -31,4 +31,4 @@ If you change the `[debug_logfile]` or `[database_path]` sections, you may need 
 
 You must update `xrpld` regularly to remain synced with the rest of the XRP Ledger network. You can subscribe to the [xrpld Google Group](https://groups.google.com/forum/#!forum/ripple-server) to receive notifications of new `xrpld` releases.
 
-The `xrpld` package includes a script you can use to [enable automatic updates on Linux](../infrastructure/installation/update-xrpld-automatically-on-linux.md). On other platforms, you must update manually.
+For package-based Linux installations, see the update instructions for [Ubuntu or Debian](../infrastructure/installation/update-xrpld-on-ubuntu.md) or [Red Hat Enterprise Linux](../infrastructure/installation/update-xrpld-on-rhel.md).
